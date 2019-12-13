@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 class BugList extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class BugList extends React.Component {
   render() {
     return (
       <div>
-        <h3>TODO</h3>
+        <h3>Bug Tracker</h3>
         <ListGenerator items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="new-todo">
@@ -22,9 +23,9 @@ class BugList extends React.Component {
             onChange={this.handleChange}
             value={this.state.text}
           />
-          <button>
-            Add #{this.state.items.length + 1}
-          </button>
+          <Button variant="primary" type="submit" style={{marginLeft: 10 + 'px', marginBottom: 8 + 'px'}}>
+            Add Bug
+          </Button>
         </form>
       </div>
     );
