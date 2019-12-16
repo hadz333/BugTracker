@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Table from 'react-bootstrap/Table';
+import ListGenerator from './ListGenerator';
 
 class BugList extends React.Component {
   constructor(props) {
@@ -45,10 +45,12 @@ class BugList extends React.Component {
     );
   }
   handleChange(e) {
-  	if (e.target.id == "new-todo") {
+  	if (e.target.id === "new-todo") {
     	this.setState({ text: e.target.value });
-	} else if (e.target.id == "name") {
+	} else if (e.target.id === "name") {
 		this.setState({ name: e.target.value });
+	} else {
+		console.log('hey');
 	}
   }
 
@@ -69,43 +71,8 @@ class BugList extends React.Component {
       name: '',
     }));
   }
+
 }
 
-class ListGenerator extends React.Component {
-  
-  render() {
-  	var d = new Date();
-    return (
-      <Table striped bordered hover>
-      <thead>
-	    <tr>
-	      <th>#</th>
-	      <th>Bug details</th>
-	      <th>Reported by</th>
-	      <th>Date</th>
-	      <th>Status</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  	
-        
-	  
-    
-     {this.props.items.map((item,index) => 
-     	<tr key={index}>
-     	<td>{index+1}</td>
-     	<td>{item.text}</td>
-     	<td>{item.name}</td>
-     	<td>{Date(item.id).toString().slice(0, 25)}</td>
-     	<td>{item.status}</td>
-     	</tr> 
-     )}
-
-        
-      </tbody>
-      </Table>
-    );
-  }
-}
 
 export default BugList;
