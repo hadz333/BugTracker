@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
-import update from 'react-addons-update';
 
 class BugList extends React.Component {
   constructor(props) {
@@ -12,8 +11,6 @@ class BugList extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dropdownSelect = this.dropdownSelect.bind(this);
-    
-
   }
 
   render() {
@@ -32,10 +29,6 @@ class BugList extends React.Component {
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	
-	        
-		  
-	    
 	       {this.state.items.map((item,index) => 
 	     	<tr key={index}>
 	     	<td>{index+1}</td>
@@ -139,33 +132,35 @@ class BugList extends React.Component {
   	const selectionId = e.target.id;
 	if (selection.includes("Unresolved")) {
 		console.log('a');
-		this.state.dropdownOptions[selectionId] = "Unresolved";
-		this.state.dropdownVariants[selectionId] = "warning";
+		let arrO = this.state.dropdownOptions;
+		let arrV = this.state.dropdownVariants;
+		arrO[selectionId] = "Unresolved";
+		arrV[selectionId] = "warning";
 		this.setState(state => ({
-		      dropdownOptions: this.state.dropdownOptions,
-		      dropdownVariants: this.state.dropdownVariants
+		      dropdownOptions: arrO,
+		      dropdownVariants: arrV
 		}));
   	} else if (selection.includes("In progress")) {
   		console.log('b');
-  		this.state.dropdownOptions[selectionId] = "In progress";
-  		this.state.dropdownVariants[selectionId] = "primary";
+  		let arrO = this.state.dropdownOptions;
+		let arrV = this.state.dropdownVariants;
+  		arrO[selectionId] = "In progress";
+  		arrV[selectionId] = "primary";
 		this.setState(state => ({
-		      dropdownOptions: this.state.dropdownOptions,
-		      dropdownVariants: this.state.dropdownVariants
+		      dropdownOptions: arrO,
+		      dropdownVariants: arrV
 		}));
   	} else if (selection.includes("Resolved")) {
   		console.log('c');
-  		this.state.dropdownOptions[selectionId] = "Resolved";
-  		this.state.dropdownVariants[selectionId] = "success";
+  		let arrO = this.state.dropdownOptions;
+		let arrV = this.state.dropdownVariants;
+  		arrO[selectionId] = "Resolved";
+  		arrV[selectionId] = "success";
 		this.setState(state => ({
-		      dropdownOptions: this.state.dropdownOptions,
-		      dropdownVariants: this.state.dropdownVariants
+		      dropdownOptions: arrO,
+		      dropdownVariants: arrV
 		}));
   	}
-  	
   }
-
 }
-
-
 export default BugList;
