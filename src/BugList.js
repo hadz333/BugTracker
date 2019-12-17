@@ -3,13 +3,17 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
+import update from 'react-addons-update';
 
 class BugList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], text: '', name: '', status: ''};
+    this.state = { items: [], text: '', name: '', dropdownOptions: [], dropdownVariants: []};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.dropdownSelect = this.dropdownSelect.bind(this);
+    
+
   }
 
   render() {
@@ -38,10 +42,10 @@ class BugList extends React.Component {
 	     	<td>{item.text}</td>
 	     	<td>{item.name}</td>
 	     	<td>{Date(item.id).toString().slice(0, 25)}</td>
-	     	<td><DropdownButton id="status-dropdown" title="Unresolved" variant="warning">
-	  			<Dropdown.Item href="#/action-1">Unresolved</Dropdown.Item>
-	  			<Dropdown.Item href="#/action-2">In progress</Dropdown.Item>
-	  			<Dropdown.Item href="#/action-3">Resolved</Dropdown.Item>
+	     	<td><DropdownButton id="status-dropdown" title={this.state.dropdownOptions[index]} variant={this.state.dropdownVariants[index]} >
+	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>Unresolved</Dropdown.Item>
+	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>In progress</Dropdown.Item>
+	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>Resolved</Dropdown.Item>
 				</DropdownButton></td>
 			<td><Button id={index} variant="danger" type="button" onClick={this.handleChange}>
 	            Remove
@@ -95,16 +99,19 @@ class BugList extends React.Component {
 		      items: [],
 		      text: '',
 		      name: '',
+		      dropdownOptions: [],
+		      dropdownVariants: []
 		    }));
 		} else {
 			this.state.items.splice(index, 1);
+			this.state.dropdownOptions.splice(index, 1);
+			this.state.dropdownVariants.splice(index, 1);
 			this.setState(state => ({
-		      items: this.state.items
+		      items: this.state.items,
+		      dropdownOptions: this.state.dropdownOptions,
+		      dropdownVariants: this.state.dropdownVariants
 		    }));
 		}
-		
-	    console.log(this.state.items);
-
 	}
   }
 
@@ -117,13 +124,45 @@ class BugList extends React.Component {
       text: this.state.text,
       id: Date.now(),
       name: this.state.name,
-      status: 'Unresolved'
     };
     this.setState(state => ({
       items: state.items.concat(newItem),
       text: '',
       name: '',
+      dropdownOptions: state.dropdownOptions.concat("Unresolved"),
+      dropdownVariants: state.dropdownVariants.concat("warning")
     }));
+  }
+
+  dropdownSelect(e) {
+  	const selection = e.target.innerHTML;
+  	const selectionId = e.target.id;
+	if (selection.includes("Unresolved")) {
+		console.log('a');
+		this.state.dropdownOptions[selectionId] = "Unresolved";
+		this.state.dropdownVariants[selectionId] = "warning";
+		this.setState(state => ({
+		      dropdownOptions: this.state.dropdownOptions,
+		      dropdownVariants: this.state.dropdownVariants
+		}));
+  	} else if (selection.includes("In progress")) {
+  		console.log('b');
+  		this.state.dropdownOptions[selectionId] = "In progress";
+  		this.state.dropdownVariants[selectionId] = "primary";
+		this.setState(state => ({
+		      dropdownOptions: this.state.dropdownOptions,
+		      dropdownVariants: this.state.dropdownVariants
+		}));
+  	} else if (selection.includes("Resolved")) {
+  		console.log('c');
+  		this.state.dropdownOptions[selectionId] = "Resolved";
+  		this.state.dropdownVariants[selectionId] = "success";
+		this.setState(state => ({
+		      dropdownOptions: this.state.dropdownOptions,
+		      dropdownVariants: this.state.dropdownVariants
+		}));
+  	}
+  	
   }
 
 }
