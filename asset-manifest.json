@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/BugTracker/static/css/main.d1b05096.chunk.css",
+    "main.js": "/BugTracker/static/js/main.edbf104d.chunk.js",
+    "main.js.map": "/BugTracker/static/js/main.edbf104d.chunk.js.map",
+    "runtime-main.js": "/BugTracker/static/js/runtime-main.c4bbfbf5.js",
+    "runtime-main.js.map": "/BugTracker/static/js/runtime-main.c4bbfbf5.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/BugTracker/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.67fa2c01.chunk.js": "/BugTracker/static/js/2.67fa2c01.chunk.js",
+    "static/js/2.67fa2c01.chunk.js.map": "/BugTracker/static/js/2.67fa2c01.chunk.js.map",
+    "index.html": "/BugTracker/index.html",
+    "precache-manifest.9625cdb9cb10f77f1fb48decc41d1b84.js": "/BugTracker/precache-manifest.9625cdb9cb10f77f1fb48decc41d1b84.js",
+    "service-worker.js": "/BugTracker/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/BugTracker/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.d1b05096.chunk.css.map": "/BugTracker/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.67fa2c01.chunk.js.LICENSE": "/BugTracker/static/js/2.67fa2c01.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c4bbfbf5.js",
+    "static/css/2.17e5ed98.chunk.css",
+    "static/js/2.67fa2c01.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.edbf104d.chunk.js"
+  ]
+}
