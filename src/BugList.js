@@ -7,7 +7,14 @@ import Dropdown from 'react-bootstrap/Dropdown';
 class BugList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { items: [], text: '', name: '', dropdownOptions: [], dropdownVariants: []};
+    this.state = { 
+    	items: [], 
+    	text: '', 
+    	name: '', 
+    	dropdownOptions: [], 
+    	dropdownVariants: [],
+    	dates: []
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dropdownSelect = this.dropdownSelect.bind(this);
@@ -34,8 +41,9 @@ class BugList extends React.Component {
 	     	<td>{index+1}</td>
 	     	<td>{item.text}</td>
 	     	<td>{item.name}</td>
-	     	<td>{Date(item.id).toString().slice(0, 25)}</td>
-	     	<td><DropdownButton id="status-dropdown" title={this.state.dropdownOptions[index]} variant={this.state.dropdownVariants[index]} >
+	     	<td>{this.state.dates[index].toString().slice(0, 25)}</td>
+	     	<td><DropdownButton id="status-dropdown" 
+	     		title={this.state.dropdownOptions[index]} variant={this.state.dropdownVariants[index]} >
 	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>Unresolved</Dropdown.Item>
 	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>In progress</Dropdown.Item>
 	  			<Dropdown.Item id={index} onClick={this.dropdownSelect}>Resolved</Dropdown.Item>
@@ -61,6 +69,7 @@ class BugList extends React.Component {
             value={this.state.text} style={{width: 300 + 'px', height: 100 + 'px'}}
             required
           />
+          <br />
           <br />
           Your Name: &nbsp; &nbsp;
           <input 
@@ -93,16 +102,19 @@ class BugList extends React.Component {
 		      text: '',
 		      name: '',
 		      dropdownOptions: [],
-		      dropdownVariants: []
+		      dropdownVariants: [],
+		      dates: []
 		    }));
 		} else {
 			this.state.items.splice(index, 1);
 			this.state.dropdownOptions.splice(index, 1);
 			this.state.dropdownVariants.splice(index, 1);
+			this.state.dates.splice(index, 1);
 			this.setState(state => ({
 		      items: this.state.items,
 		      dropdownOptions: this.state.dropdownOptions,
-		      dropdownVariants: this.state.dropdownVariants
+		      dropdownVariants: this.state.dropdownVariants,
+		      dates: this.state.dates
 		    }));
 		}
 	}
@@ -123,7 +135,8 @@ class BugList extends React.Component {
       text: '',
       name: '',
       dropdownOptions: state.dropdownOptions.concat("Unresolved"),
-      dropdownVariants: state.dropdownVariants.concat("warning")
+      dropdownVariants: state.dropdownVariants.concat("warning"),
+      dates: state.dates.concat(Date(Date.now()))
     }));
   }
 
